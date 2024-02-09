@@ -24,4 +24,26 @@ router.post("/register",async(req,res)=>{
     )
 })
 
+router.post("/login",async(req,res)=>{
+    let euname=req.body.username
+    let epass=req.body.password
+    let data=await userModel.findOne({"username":euname})
+    if(!data)
+    {
+        return res.json({
+            status:"Invalid user"
+        })
+    }
+    let dbpass=data.password
+    const match=await bcrypt.compare(epass,dbpass)
+    if (!match) {
+        return res.json({
+            status:"Incorrect password"
+        })
+    }
+    res.json({
+        status:"success"
+    })
+})
+
 module.exports=router
