@@ -12,4 +12,9 @@ router.post("/add",async(req,res)=>{
     })
 })
 
+router.post("/view",async(req,res)=>{
+    let output=await resumeModel.find()
+    res.json(output)
+})
+
 module.exports=router
