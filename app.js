@@ -2,6 +2,7 @@ const express = require("express")
 const cors= require("cors")
 const mongoose= require("mongoose")
 const userRoute= require("./controller/userRouter")
+const resumeRoute = require("./controller/reumeRouter")
 
 const app=express()
 
@@ -12,6 +13,7 @@ mongoose.connect("mongodb+srv://nithindas1234:1234nith@cluster0.lvn9hia.mongodb.
 {useNewUrlParser: true})
 
 app.use("/api/resume",userRoute)
+app.use("/api/resumeentry",resumeRoute)
 
 app.listen(3001,()=>{
     console.log("Server running")
